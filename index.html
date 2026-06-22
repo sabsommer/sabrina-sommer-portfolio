@@ -2909,8 +2909,11 @@ _origBtnFoundry.addEventListener('click', hideAbout);
   document.getElementById('btn-about').addEventListener('click', () => showMobileSection('about'));
   document.getElementById('btn-foundry').addEventListener('click', () => showMobileSection('foundry'));
 
-  // default mobile state on load — Archive, since Grid View doesn't exist on mobile
-  showMobileSection('archive');
+  // only set mobile default state on load if actually in mobile width —
+  // prevents Archive active class bleeding onto desktop view on first load
+  if (window.innerWidth <= 768) {
+    showMobileSection('archive');
+  }
 
   // ── Mobile Type Tester ─────────────────────────────────────
   const mobileEditText = document.getElementById('mobileFoundryEditText');
